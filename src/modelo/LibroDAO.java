@@ -65,18 +65,18 @@ public class LibroDAO {
     }
 
     public ArrayList<Libro> readAll() {
-        ArrayList<Libro> alumnos = null;
+        ArrayList<Libro> libros = null;
         try {
-            alumnos = new ArrayList<>();
+            libros = new ArrayList<>();
             ps = con.getCnn().prepareStatement(SQL_READALL);
             ResultSet res = ps.executeQuery();
             while (res.next()) {
-                alumnos.add(new Libro(res.getInt("isbn"), res.getInt("anno"), res.getString("nombre"), res.getString("autor"), res.getString("editorial"), res.getString(""), res.getBoolean("prestamo"), res.getInt("mes")));
+                libros.add(new Libro(res.getInt("isbn"), res.getInt("anno"), res.getString("nombre"), res.getString("autor"), res.getString("editorial"), res.getString(""), res.getBoolean("prestamo"), res.getInt("mes")));
             }
         } catch (SQLException ex) {
             Logger.getLogger(LibroDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return alumnos;
+        return libros;
     }
 //me devuelve (si lo encuentra) un objeto de tipo Alumno (solo 1)
 

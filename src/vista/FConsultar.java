@@ -76,9 +76,9 @@ public class FConsultar extends javax.swing.JFrame {
     private void btnMostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarActionPerformed
         // TODO add your handling code here:
         Controlador c = new Controlador();
-        ArrayList<Libro> alumnos = c.consultarTodo();
-        String temp="";
-        for (Libro alumno : alumnos) {
+        ArrayList<Libro> items = c.consultarTodo();
+        String temp = "";
+        for (Libro alumno : items) {
             temp=temp+"\n"+""+alumno.getAutor()+" - "+alumno.getNombre()+" - "+alumno.getEditorial();
             txaSalida.setText(temp);
         }
