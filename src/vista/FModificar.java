@@ -21,6 +21,7 @@ public class FModificar extends javax.swing.JFrame {
     public FModificar() {
         initComponents();
         limpiar();
+        this.setLocationRelativeTo(null);
     }
 
     private void limpiar() {
@@ -41,6 +42,8 @@ public class FModificar extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        cbnTipo = new javax.swing.JComboBox<>();
+        jLabel8 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         btnModificar = new javax.swing.JButton();
         btnLimpiar = new javax.swing.JButton();
@@ -56,6 +59,18 @@ public class FModificar extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         txtEditorial = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        cbnTipo1 = new javax.swing.JComboBox<>();
+
+        cbnTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione", "Digital", "Impreso" }));
+        cbnTipo.setToolTipText("");
+        cbnTipo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbnTipoActionPerformed(evt);
+            }
+        });
+
+        jLabel8.setText("Tipo:");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("FORMULARIO MODIFICAR");
@@ -80,10 +95,11 @@ public class FModificar extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnModificar)
-                    .addComponent(btnLimpiar))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(btnLimpiar)
+                .addContainerGap(28, Short.MAX_VALUE))
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addComponent(btnModificar)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -181,6 +197,16 @@ public class FModificar extends javax.swing.JFrame {
                 .addContainerGap(21, Short.MAX_VALUE))
         );
 
+        jLabel9.setText("Tipo:");
+
+        cbnTipo1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione", "Digital", "Impreso" }));
+        cbnTipo1.setToolTipText("");
+        cbnTipo1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbnTipo1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -189,7 +215,12 @@ public class FModificar extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(41, 41, 41)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel9)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(cbnTipo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(42, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -197,12 +228,16 @@ public class FModificar extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(45, 45, 45)
+                        .addGap(19, 19, 19)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(cbnTipo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel9))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
+                        .addGap(28, 28, 28)
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(70, Short.MAX_VALUE))
+                .addContainerGap(53, Short.MAX_VALUE))
         );
 
         pack();
@@ -211,6 +246,11 @@ public class FModificar extends javax.swing.JFrame {
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
         // TODO add your handling code here:
         int id = Integer.parseInt(txtIsbn.getText());
+        
+        if(cbnTipo.getSelectedIndex()==0){
+            JOptionPane.showMessageDialog(null, "SELECCIONE TIPO");
+            }  
+        
         if (id < 1) {
             JOptionPane.showMessageDialog(rootPane, "id NO VALIDO");
             return;
@@ -259,11 +299,20 @@ public class FModificar extends javax.swing.JFrame {
     private void txtAutorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAutorActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtAutorActionPerformed
+
+    private void cbnTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbnTipoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbnTipoActionPerformed
+
+    private void cbnTipo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbnTipo1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbnTipo1ActionPerformed
     private void poblar(Libro alumno) {
         txtNombre.setText(alumno.getNombre());
         txtAño.setText(String.valueOf(alumno.getAnno()));
-        
-        
+        txtAutor.setText(alumno.getAutor());
+        txtEditorial.setText(alumno.getEditorial());
+        txtIsbn.setText(String.valueOf(alumno.getIsbn()));
     }
 
     /**
@@ -305,12 +354,16 @@ public class FModificar extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLimpiar;
     private javax.swing.JButton btnModificar;
+    private javax.swing.JComboBox<String> cbnTipo;
+    private javax.swing.JComboBox<String> cbnTipo1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JTextField txtAutor;

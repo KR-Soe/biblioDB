@@ -10,14 +10,12 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public class LibroDAO {
-
     PreparedStatement ps;
     private static final String SQL_INSERT = "insert into alumno values (?,?,?)";
     private static final String SQL_DELETE = "delete from alumno where id=?";
     private static final String SQL_READALL = "select *from alumno";
     private static final String SQL_READ = "select *from alumno where id=?";
     private static final String SQL_UPDATE = "update alumno set nombre = ?, nota = ? WHERE id = ?;";
-
     private static final Conexion con = Conexion.getInstance();
 
     public int insert(Libro book) {
@@ -81,18 +79,18 @@ public class LibroDAO {
 //me devuelve (si lo encuentra) un objeto de tipo Alumno (solo 1)
 
     public Libro read(Integer id) {
-        Libro alumno = null;
+        Libro libb = null;
         try {
             ps = con.getCnn().prepareStatement(SQL_READ);
             ps.setInt(1, id);
             ResultSet res = ps.executeQuery();
             if (res.next()) {
-                alumno = new Libro(res.getInt("isbn"), res.getInt("anno"), res.getString("nombre"), res.getString("autor"), res.getString("editorial"), res.getString(""), res.getBoolean("prestamo"), res.getInt("mes"));
+                libb = new Libro(res.getInt("isbn"), res.getInt("año"), res.getString("nombre"), res.getString("autor"), res.getString("editorial"), res.getString(""), res.getBoolean("prestamo"), res.getInt("mes"));
             }
         } catch (SQLException ex) {
             Logger.getLogger(LibroDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return alumno;
+        return libb;
     }
 
 }

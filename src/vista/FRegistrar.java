@@ -21,13 +21,15 @@ public class FRegistrar extends javax.swing.JFrame {
     public FRegistrar() {
         initComponents();
         limpiar();
+        this.setLocationRelativeTo(null);
     }
 
     private void limpiar() {
         txtIsbn.setText("");
         txtNombre.setText("");
         txtAño.setText("");
-
+        txtAutor.setText("");
+        txtEditorial.setText("");
     }
 
     /**
@@ -54,7 +56,7 @@ public class FRegistrar extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         btnGrabar = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        cbnTipo = new javax.swing.JComboBox<>();
         jRadioButton1 = new javax.swing.JRadioButton();
         jRadioButton2 = new javax.swing.JRadioButton();
         jLabel7 = new javax.swing.JLabel();
@@ -175,11 +177,11 @@ public class FRegistrar extends javax.swing.JFrame {
                 .addContainerGap(69, Short.MAX_VALUE))
         );
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione", "Digital", "Impreso" }));
-        jComboBox1.setToolTipText("");
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+        cbnTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione", "Digital", "Impreso" }));
+        cbnTipo.setToolTipText("");
+        cbnTipo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+                cbnTipoActionPerformed(evt);
             }
         });
 
@@ -217,7 +219,7 @@ public class FRegistrar extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jLabel8)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(cbnTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -225,7 +227,7 @@ public class FRegistrar extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbnTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8))
                 .addGap(18, 18, 18)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -246,11 +248,15 @@ public class FRegistrar extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnGrabarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGrabarActionPerformed
-        // TODO add your handling code here:
+        // verificadores //
         int code = 10;
         if (txtIsbn.getText().length() == code){
             int isbn = Integer.parseInt(txtIsbn.getText());
             String nombre = txtNombre.getText();
+            
+            if(cbnTipo.getSelectedIndex()==0){
+                JOptionPane.showMessageDialog(null, "SELECCIONE TIPO");
+            }       
             if (nombre.length() <= 0) {
                 JOptionPane.showMessageDialog(rootPane, "NOMBRE NO VALIDO");
                 return;
@@ -271,7 +277,8 @@ public class FRegistrar extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(rootPane, "AÑO NO VALIDO");
                 return;
             }
-            Libro a = new Libro(isbn, isbn, nombre, nombre, nombre, nombre, rootPaneCheckingEnabled, isbn);
+            /// Agregar registro ///
+            Libro a = new Libro(isbn, testAnno, nombre, autor, editorial, autor, rootPaneCheckingEnabled, isbn);
 
             Controlador con = new Controlador();
             if (con.agregar(a)) {
@@ -279,10 +286,10 @@ public class FRegistrar extends javax.swing.JFrame {
             } else {
                 JOptionPane.showMessageDialog(rootPane, "Hubo un problema");
             }
-        }else{
+        }
+        else{
             JOptionPane.showMessageDialog(null, "Isbn NO VALIDO");
         }
-           
         limpiar();
     }//GEN-LAST:event_btnGrabarActionPerformed
 
@@ -290,13 +297,13 @@ public class FRegistrar extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtAutorActionPerformed
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
-
     private void txtAñoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAñoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtAñoActionPerformed
+
+    private void cbnTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbnTipoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbnTipoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -335,7 +342,7 @@ public class FRegistrar extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnGrabar;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> cbnTipo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

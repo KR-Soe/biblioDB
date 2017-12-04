@@ -16,6 +16,7 @@ public class FMenu extends javax.swing.JFrame {
      */
     public FMenu() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**

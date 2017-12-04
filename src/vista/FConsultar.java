@@ -21,6 +21,7 @@ public class FConsultar extends javax.swing.JFrame {
      */
     public FConsultar() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**

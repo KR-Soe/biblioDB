@@ -20,6 +20,7 @@ public class FEliminar extends javax.swing.JFrame {
      */
     public FEliminar() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
